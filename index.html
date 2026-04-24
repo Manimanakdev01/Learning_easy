@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Learning With Love ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #e8547a;
+    --blush: #f7c5d0;
+    --petal: #fce8ed;
+    --deep: #b03060;
+    --cream: #fff8f9;
+    --gold: #e8a87c;
+    --text: #5c2040;
+    --soft: #9b6b7b;
+    --white: #ffffff;
+    --shadow: rgba(232, 84, 122, 0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Floating petals background */
+  .petal-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .petal {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    animation: floatPetal linear infinite;
+  }
+
+  @keyframes floatPetal {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px 18px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 10px 0 0;
+    animation: slideDown 0.7s ease;
+  }
+
+  .header-heart {
+    font-size: 2.2rem;
+    display: inline-block;
+    animation: heartBeat 1.4s ease-in-out infinite;
+  }
+
+  @keyframes heartBeat {
+    0%,100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    56% { transform: scale(1); }
+  }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--deep);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    margin-top: 4px;
+  }
+
+  .subtitle {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    width: 100%;
+    background: var(--blush);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--deep));
+    border-radius: 20px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  .progress-label {
+    font-size: 0.72rem;
+    color: var(--soft);
+    text-align: right;
+    width: 100%;
+    margin-top: -10px;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .stat-card {
+    flex: 1;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 1px solid rgba(232,84,122,0.1);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--rose);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .stat-lbl {
+    font-size: 0.65rem;
+    color: var(--soft);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-top: 3px;
+  }
+
+  /* Word card */
+  .word-card {
+    width: 100%;
+    background: linear-gradient(135deg, var(--white) 0%, #fff0f4 100%);
+    border-radius: 24px;
+    padding: 28px 20px 22px;
+    text-align: center;
+    box-shadow: 0 8px 30px var(--shadow), 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid rgba(232,84,122,0.12);
+    position: relative;
+    overflow: hidden;
+    animation: cardReveal 0.5s ease;
+  }
+
+  .word-card::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(232,84,122,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  @keyframes cardReveal {
+    from { opacity: 0; transform: translateY(10px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .word-category {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--rose);
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .word-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--deep);
+    line-height: 1.1;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .word-display:active { transform: scale(0.96); }
+
+  .word-meaning {
+    font-size: 0.82rem;
+    color: var(--soft);
+    margin-top: 4px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  .word-romanized {
+    font-size: 1.15rem;
+    color: var(--rose);
+    font-weight: 700;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  .meaning-blur { filter: blur(4px); cursor: pointer; transition: filter 0.3s; }
+  .meaning-blur:hover, .meaning-blur:active { filter: blur(0); }
+
+  .hint-label {
+    font-size: 0.65rem;
+    color: var(--blush);
+    margin-top: 2px;
+  }
+
+  /* Streak flame */
+  .streak-badge {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: linear-gradient(135deg, #ff9a3c, #ff5f5f);
+    color: white;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .streak-badge.show { opacity: 1; transform: scale(1); }
+
+  /* Buttons */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px 10px;
+    border: none;
+    border-radius: 18px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.3px;
+  }
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .btn:active::after { opacity: 0.2; }
+  .btn:active { transform: scale(0.95); }
+
+  .btn-play {
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    box-shadow: 0 6px 20px rgba(232,84,122,0.4);
+  }
+
+  .btn-check {
+    background: linear-gradient(135deg, #e8a87c, #d4754a);
+    color: white;
+    box-shadow: 0 6px 20px rgba(232,168,124,0.4);
+  }
+
+  .btn-next {
+    background: linear-gradient(135deg, #a855b5, #7c3aed);
+    color: white;
+    box-shadow: 0 6px 20px rgba(168,85,181,0.3);
+  }
+
+  .btn-icon { font-size: 1.1rem; }
+
+  /* Input area */
+  .input-wrap {
+    width: 100%;
+    position: relative;
+  }
+
+  .input-label {
+    font-size: 0.72rem;
+    color: var(--soft);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .hindi-input {
+    width: 100%;
+    padding: 16px 50px 16px 18px;
+    border: 2px solid var(--blush);
+    border-radius: 18px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text);
+    background: var(--white);
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow);
+  }
+
+  .hindi-input:focus {
+    border-color: var(--rose);
+    box-shadow: 0 4px 20px rgba(232,84,122,0.2), 0 0 0 3px rgba(232,84,122,0.08);
+  }
+
+  .hindi-input::placeholder { color: var(--blush); font-size: 0.85rem; }
+
+  .input-clear {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    background: var(--blush);
+    border: none;
+    border-radius: 50%;
+    width: 28px; height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--soft);
+    transition: all 0.2s;
+    opacity: 0;
+  }
+
+  .hindi-input:not(:placeholder-shown) ~ .input-clear { opacity: 1; }
+  .input-clear:active { transform: scale(0.9); background: var(--rose); color: white; }
+
+  /* Keyboard */
+  .keyboard-toggle {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px dashed var(--blush);
+    border-radius: 14px;
+    padding: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.75rem;
+    color: var(--soft);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+
+  .keyboard-toggle:active { background: var(--petal); }
+
+  .hindi-keyboard {
+    width: 100%;
+    background: var(--white);
+    border-radius: 18px;
+    padding: 12px 10px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid rgba(232,84,122,0.1);
+    display: none;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .hindi-keyboard.open { display: flex; animation: slideUp 0.3s ease; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .key-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .key {
+    background: linear-gradient(180deg, #fff 0%, #fef0f4 100%);
+    border: 1px solid var(--blush);
+    border-radius: 10px;
+    padding: 8px 5px;
+    min-width: 32px;
+    font-size: 1rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    box-shadow: 0 2px 0 var(--blush);
+  }
+
+  .key:active {
+    transform: translateY(2px);
+    box-shadow: none;
+    background: var(--petal);
+  }
+
+  .key-special {
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    border-color: var(--deep);
+    font-size: 0.75rem;
+    min-width: 44px;
+    box-shadow: 0 2px 0 var(--deep);
+  }
+
+  /* Accuracy ring */
+  .accuracy-wrap {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .accuracy-wrap.show { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .accuracy-ring {
+    width: 110px; height: 110px;
+    position: relative;
+  }
+
+  .accuracy-ring svg {
+    transform: rotate(-90deg);
+    width: 110px; height: 110px;
+  }
+
+  .ring-bg { fill: none; stroke: var(--blush); stroke-width: 8; }
+  .ring-fill {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s;
+  }
+
+  .ring-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring-percent {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--deep);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .ring-label { font-size: 0.6rem; color: var(--soft); }
+
+  .feedback-msg {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--deep);
+    text-align: center;
+    font-style: italic;
+  }
+
+  .feedback-sub {
+    font-size: 0.75rem;
+    color: var(--soft);
+    text-align: center;
+  }
+
+  /* Comparison display */
+  .comparison {
+    width: 100%;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 1px solid rgba(232,84,122,0.1);
+  }
+
+  .comparison-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--blush);
+    font-size: 0.78rem;
+  }
+
+  .comparison-row:last-child { border-bottom: none; }
+  .c-label { color: var(--soft); }
+  .c-value { color: var(--deep); font-weight: 700; font-size: 1rem; }
+  .c-correct { color: #22c55e; }
+  .c-wrong { color: var(--rose); }
+
+  /* Mode selector */
+  .mode-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .mode-btn {
+    flex: 1;
+    padding: 9px 8px;
+    border: 2px solid var(--blush);
+    border-radius: 14px;
+    background: var(--white);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--soft);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .mode-btn.active {
+    border-color: var(--rose);
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    box-shadow: 0 4px 12px rgba(232,84,122,0.3);
+  }
+
+  /* Confetti */
+  .confetti-wrap {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+  }
+
+  .conf {
+    position: absolute;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: confettiFall 1.2s ease-in forwards;
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-80px);
+    background: linear-gradient(135deg, var(--deep), var(--rose));
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 20px rgba(176,48,96,0.3);
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* XP bar */
+  .xp-bar-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .xp-label { font-size: 0.65rem; color: var(--soft); white-space: nowrap; }
+
+  .xp-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--blush);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .xp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--rose));
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Speaking animation */
+  .speaking .word-display {
+    animation: pulse 0.5s ease infinite alternate;
+  }
+
+  @keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.04); }
+  }
+
+  /* Slow mode timer */
+  .slow-mode-ring {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: var(--soft);
+    display: none;
+  }
+
+  .slow-ring {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--blush);
+    border-top-color: var(--rose);
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Love letter modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(176,48,96,0.3);
+    backdrop-filter: blur(4px);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    padding: 20px;
+  }
+
+  .modal-overlay.show { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 28px 22px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(176,48,96,0.2);
+    transform: scale(0.85);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .modal-overlay.show .modal { transform: scale(1); }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+
+  .modal-body {
+    font-size: 0.82rem;
+    color: var(--soft);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .modal-close {
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 12px 28px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .hearts-anim {
+    font-size: 2rem;
+    letter-spacing: 5px;
+    margin-bottom: 12px;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  /* Music Bar */
+  .music-bar {
+    width: 100%;
+    background: linear-gradient(135deg, #fff0f5, #fff8f9);
+    border: 1.5px solid rgba(232,84,122,0.18);
+    border-radius: 20px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+
+  .music-btn {
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 10px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition: all 0.25s cubic-bezier(0.175,0.885,0.32,1.275);
+    box-shadow: 0 4px 14px rgba(232,84,122,0.35);
+    width: 100%;
+  }
+
+  .music-btn:active { transform: scale(0.96); }
+
+  .music-btn.playing {
+    background: linear-gradient(135deg, #a855b5, #7c3aed);
+    box-shadow: 0 4px 14px rgba(168,85,181,0.4);
+  }
+
+  .music-icon {
+    font-size: 1rem;
+    display: inline-block;
+  }
+
+  .music-btn.playing .music-icon {
+    animation: spin 2s linear infinite;
+  }
+
+  .music-vol-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vol-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    border-radius: 10px;
+    background: var(--blush);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(232,84,122,0.4);
+    transition: transform 0.15s;
+  }
+
+  .vol-slider::-webkit-slider-thumb:active { transform: scale(1.2); }
+
+  .music-now-playing {
+    font-size: 0.68rem;
+    color: var(--soft);
+    text-align: center;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .music-now-playing.scrolling span {
+    display: inline-block;
+    animation: marquee 8s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating Petals -->
+<div class="petal-bg" id="petalBg"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Confetti -->
+<div class="confetti-wrap" id="confettiWrap"></div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="hearts-anim">💖✨💖</div>
+    <div class="modal-title" id="modalTitle">You're Amazing!</div>
+    <div class="modal-body" id="modalBody">Keep going, love. Every step is progress.</div>
+    <button class="modal-close" onclick="closeModal()">Thank you ❤️</button>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-heart">❤️</div>
+    <div class="title">Learning With Love</div>
+    <div class="subtitle">हिंदी सीखें — एक कदम, एक शब्द, एक प्यार</div>
+  </div>
+
+  <!-- Music Control -->
+  <div class="music-bar">
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+      <span class="music-icon" id="musicIcon">🎵</span>
+      <span id="musicLabel">Play Music</span>
+    </button>
+    <div class="music-vol-wrap">
+      <span style="font-size:0.7rem">🔈</span>
+      <input type="range" class="vol-slider" id="volSlider" min="0" max="100" value="25" oninput="setVolume(this.value)">
+      <span style="font-size:0.7rem">🔊</span>
+    </div>
+    <div class="music-now-playing" id="nowPlaying">♪ Romantic Melody</div>
+  </div>
+
+  <!-- Mode Selector -->
+  <div class="mode-row">
+    <button class="mode-btn active" onclick="setMode('practice')" id="mode-practice">📖 Practice</button>
+    <button class="mode-btn" onclick="setMode('quiz')" id="mode-quiz">🎯 Quiz</button>
+    <button class="mode-btn" onclick="setMode('slow')" id="mode-slow">🐢 Slow</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num" id="statCorrect">0</div>
+      <div class="stat-lbl">✅ Correct</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="statStreak">0</div>
+      <div class="stat-lbl">🔥 Streak</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="statXP">0</div>
+      <div class="stat-lbl">⭐ XP</div>
+    </div>
+  </div>
+
+  <!-- XP Bar -->
+  <div class="xp-bar-wrap">
+    <div class="xp-label">Level <span id="levelNum">1</span></div>
+    <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+    <div class="xp-label" id="xpLabel">0/50</div>
+  </div>
+
+  <!-- Progress -->
+  <div style="width:100%">
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">Word 1 of 20</div>
+  </div>
+
+  <!-- Word Card -->
+  <div class="word-card" id="wordCard">
+    <div class="streak-badge" id="streakBadge">🔥 <span id="streakNum">0</span></div>
+    <div class="word-category" id="wordCategory">
+      <span>🌸</span><span>Nature</span>
+    </div>
+    <div class="word-display" id="wordDisplay" onclick="playWord()">कमल</div>
+    <div class="word-romanized" id="wordRomanized">kamal</div>
+    <div class="word-meaning" id="wordMeaning">🇬🇧 Lotus flower</div>
+    <div class="hint-label" id="hintLabel">Type the English spelling below ✍️</div>
+  </div>
+
+  <!-- Slow mode indicator -->
+  <div class="slow-mode-ring" id="slowRing">
+    <div class="slow-ring"></div>
+    <span>Slow mode: Listen carefully...</span>
+  </div>
+
+  <!-- Input -->
+  <div class="input-wrap">
+    <div class="input-label">✍️ Type in English (Roman) spelling:</div>
+    <input type="text" class="hindi-input" id="hindiInput"
+      placeholder="e.g. paani, dil, pyaar..." autocomplete="off" autocorrect="off" spellcheck="false"
+      oninput="onInput()" onkeypress="handleKey(event)">
+    <button class="input-clear" id="clearBtn" onclick="clearInput()">✕</button>
+  </div>
+
+  <!-- Controls -->
+  <div class="btn-row">
+    <button class="btn btn-play" onclick="playWord()" id="playBtn">
+      <span class="btn-icon">🔊</span> Play
+    </button>
+    <button class="btn btn-check" onclick="checkAnswer()">
+      <span class="btn-icon">💞</span> Check
+    </button>
+    <button class="btn btn-next" onclick="nextWord()">
+      <span class="btn-icon">🔁</span> Next
+    </button>
+  </div>
+
+  <!-- Accuracy Display -->
+  <div class="accuracy-wrap" id="accuracyWrap">
+    <div class="accuracy-ring">
+      <svg viewBox="0 0 110 110">
+        <circle class="ring-bg" cx="55" cy="55" r="46"/>
+        <circle class="ring-fill" id="ringFill" cx="55" cy="55" r="46"
+          stroke-dasharray="289" stroke-dashoffset="289"/>
+      </svg>
+      <div class="ring-text">
+        <div class="ring-percent" id="ringPercent">0%</div>
+        <div class="ring-label">accuracy</div>
+      </div>
+    </div>
+    <div class="feedback-msg" id="feedbackMsg">–</div>
+    <div class="feedback-sub" id="feedbackSub">–</div>
+    <div class="comparison" id="comparisonBox">
+      <div class="comparison-row">
+        <span class="c-label">Hindi word:</span>
+        <span class="c-value" id="cWord">–</span>
+      </div>
+      <div class="comparison-row">
+        <span class="c-label">Correct spelling:</span>
+        <span class="c-value c-correct" id="cCorrect">–</span>
+      </div>
+      <div class="comparison-row">
+        <span class="c-label">You typed:</span>
+        <span class="c-value" id="cYours">–</span>
+      </div>
+      <div class="comparison-row">
+        <span class="c-label">Meaning:</span>
+        <span class="c-value" id="cMeaning">–</span>
+      </div>
+      <div class="comparison-row">
+        <span class="c-label">Accuracy:</span>
+        <span class="c-value" id="cResult">–</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ===================== WORD DATA =====================
+// word = Hindi script | romanized = how to type in English | meaning = English meaning
+const wordData = [
+  { word: 'कमल',    romanized: 'kamal',    meaning: 'Lotus flower',      category: 'Nature',  emoji: '🌸' },
+  { word: 'माला',   romanized: 'mala',     meaning: 'Garland / Necklace',category: 'Love',    emoji: '💐' },
+  { word: 'काला',   romanized: 'kala',     meaning: 'Black color',       category: 'Colors',  emoji: '🖤' },
+  { word: 'पानी',   romanized: 'paani',    meaning: 'Water',             category: 'Nature',  emoji: '💧' },
+  { word: 'गाना',   romanized: 'gaana',    meaning: 'Song / To sing',    category: 'Music',   emoji: '🎵' },
+  { word: 'दिल',    romanized: 'dil',      meaning: 'Heart',             category: 'Love',    emoji: '❤️' },
+  { word: 'प्यार',  romanized: 'pyaar',    meaning: 'Love',              category: 'Love',    emoji: '💕' },
+  { word: 'सपना',   romanized: 'sapna',    meaning: 'Dream',             category: 'Emotion', emoji: '✨' },
+  { word: 'तारा',   romanized: 'tara',     meaning: 'Star',              category: 'Sky',     emoji: '⭐' },
+  { word: 'चाँद',   romanized: 'chand',    meaning: 'Moon',              category: 'Sky',     emoji: '🌙' },
+  { word: 'फूल',    romanized: 'phool',    meaning: 'Flower',            category: 'Nature',  emoji: '🌺' },
+  { word: 'आँखें',  romanized: 'aankhen',  meaning: 'Eyes',              category: 'Body',    emoji: '👁️' },
+  { word: 'खुशी',   romanized: 'khushi',   meaning: 'Happiness',         category: 'Emotion', emoji: '😊' },
+  { word: 'सुबह',   romanized: 'subah',    meaning: 'Morning',           category: 'Time',    emoji: '🌅' },
+  { word: 'रात',    romanized: 'raat',     meaning: 'Night',             category: 'Time',    emoji: '🌃' },
+  { word: 'दोस्त',  romanized: 'dost',     meaning: 'Friend',            category: 'People',  emoji: '🤝' },
+  { word: 'माँ',    romanized: 'maa',      meaning: 'Mother',            category: 'Family',  emoji: '🤱' },
+  { word: 'घर',     romanized: 'ghar',     meaning: 'Home',              category: 'Places',  emoji: '🏠' },
+  { word: 'मुस्कान',romanized: 'muskaan',  meaning: 'Smile',             category: 'Emotion', emoji: '😊' },
+  { word: 'बरसात',  romanized: 'barsaat',  meaning: 'Rain',              category: 'Nature',  emoji: '🌧️' },
+];
+
+// ===================== STATE =====================
+let currentWordIndex = 0;
+let shuffledWords = [];
+let correct = 0;
+let streak = 0;
+let xp = 0;
+let level = 1;
+let mode = 'practice';
+let meaningRevealed = false;
+let hasChecked = false;
+let keyboardOpen = false;
+let slowTimer = null;
+
+const XP_PER_LEVEL = 50;
+
+// ===================== INIT =====================
+function init() {
+  shuffledWords = shuffle([...wordData]);
+  spawnPetals();
+  loadWord();
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// ===================== PETALS =====================
+function spawnPetals() {
+  const bg = document.getElementById('petalBg');
+  const chars = ['❤️','🌸','💕','✨','🌺','💖'];
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = chars[Math.floor(Math.random() * chars.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (8 + Math.random() * 10) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    bg.appendChild(p);
+  }
+}
+
+// ===================== WORD LOADING =====================
+function loadWord() {
+  if (currentWordIndex >= shuffledWords.length) {
+    currentWordIndex = 0;
+    shuffledWords = shuffle([...wordData]);
+    showModal('🎉 You completed a full round!',
+      'You went through all 20 words. You are growing every day, step by step, with so much love. Let\'s go again! 💪❤️');
+  }
+
+  const data = shuffledWords[currentWordIndex];
+  const card = document.getElementById('wordCard');
+  card.classList.remove('speaking');
+
+  // Always show Hindi word
+  document.getElementById('wordDisplay').textContent = data.word;
+
+  // In quiz mode, hide the romanized hint
+  if (mode === 'quiz') {
+    document.getElementById('wordRomanized').textContent = '???';
+    document.getElementById('hintLabel').textContent = 'Press 🔊 Play to hear it, then type English';
+  } else {
+    document.getElementById('wordRomanized').textContent = data.romanized;
+    document.getElementById('hintLabel').textContent = 'Type the English spelling below ✍️';
+  }
+
+  // Always show meaning
+  document.getElementById('wordMeaning').textContent = '🇬🇧 ' + data.meaning;
+
+  document.getElementById('wordCategory').innerHTML =
+    `<span>${data.emoji}</span><span>${data.category}</span>`;
+  meaningRevealed = true;
+  hasChecked = false;
+
+  document.getElementById('hindiInput').value = '';
+  document.getElementById('accuracyWrap').classList.remove('show');
+
+  const prog = ((currentWordIndex + 1) / shuffledWords.length) * 100;
+  document.getElementById('progressBar').style.width = prog + '%';
+  document.getElementById('progressLabel').textContent =
+    `Word ${currentWordIndex + 1} of ${shuffledWords.length}`;
+
+  // Slow mode: auto-play after delay
+  if (mode === 'slow') {
+    document.getElementById('slowRing').style.display = 'flex';
+    clearTimeout(slowTimer);
+    slowTimer = setTimeout(() => {
+      playWord();
+      document.getElementById('slowRing').style.display = 'none';
+    }, 2000);
+  } else {
+    document.getElementById('slowRing').style.display = 'none';
+  }
+}
+
+
+// ===================== PLAY AUDIO =====================
+function playWord() {
+  const data = shuffledWords[currentWordIndex];
+
+  // In quiz mode, reveal romanized when played
+  if (mode === 'quiz') {
+    document.getElementById('wordRomanized').textContent = data.romanized;
+    document.getElementById('hintLabel').textContent = 'Now type the English spelling!';
+  }
+
+  const card = document.getElementById('wordCard');
+  card.classList.add('speaking');
+
+  const utterance = new SpeechSynthesisUtterance(data.word);
+  utterance.lang = 'hi-IN';
+  utterance.rate = mode === 'slow' ? 0.5 : 0.85;
+  utterance.pitch = 1.1;
+  utterance.volume = 1;
+
+  utterance.onend = () => card.classList.remove('speaking');
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
+
+// ===================== CHECK ANSWER =====================
+function checkAnswer() {
+  const input = document.getElementById('hindiInput').value.trim().toLowerCase();
+  if (!input) {
+    showToast('✍️ Please type something first!');
+    return;
+  }
+
+  const data = shuffledWords[currentWordIndex];
+  const target = data.romanized.toLowerCase();
+  const acc = similarity(input, target);
+  const pct = Math.round(acc * 100);
+
+  // Show accuracy ring
+  const circumference = 289;
+  const offset = circumference - (circumference * acc);
+  const ring = document.getElementById('ringFill');
+  ring.style.strokeDashoffset = offset;
+
+  let color, msg, sub;
+  if (pct >= 80) {
+    color = '#22c55e';
+    msg = 'Perfect ❤️';
+    sub = 'You wrote it beautifully, just like you are!';
+    if (!hasChecked) { correct++; streak++; gainXP(20); }
+    if (pct === 100) launchConfetti();
+  } else if (pct >= 50) {
+    color = '#f59e0b';
+    msg = 'Good 😊';
+    sub = 'Getting closer! A little more practice, and you\'ll shine!';
+    if (!hasChecked) { streak++; gainXP(10); }
+  } else {
+    color = '#e8547a';
+    msg = 'Try Again 💪';
+    sub = 'Don\'t worry love, even stars take time to shine. Try once more!';
+    if (!hasChecked) { streak = 0; gainXP(3); }
+  }
+
+  ring.style.stroke = color;
+  document.getElementById('ringPercent').textContent = pct + '%';
+  document.getElementById('feedbackMsg').textContent = msg;
+  document.getElementById('feedbackSub').textContent = sub;
+  document.getElementById('cWord').textContent = data.word;
+  document.getElementById('cCorrect').textContent = "data.romanized";
+  document.getElementById('cYours').textContent = input;
+  document.getElementById('cMeaning').textContent = data.meaning;
+  document.getElementById('cResult').textContent = pct + '%';
+  document.getElementById('cResult').className = 'c-value ' + (pct >= 80 ? 'c-correct' : 'c-wrong');
+
+  document.getElementById('accuracyWrap').classList.add('show');
+  updateStats();
+  hasChecked = true;
+
+  // Scroll to result
+  setTimeout(() => {
+    document.getElementById('accuracyWrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
+}
+
+// ===================== SIMILARITY =====================
+function similarity(a, b) {
+  if (a === b) return 1;
+  if (!a || !b) return 0;
+  // Normalize
+  a = a.trim(); b = b.trim();
+  if (a === b) return 1;
+
+  const len = Math.max(a.length, b.length);
+  if (len === 0) return 1;
+
+  // Levenshtein distance
+  const dp = Array.from({ length: a.length + 1 }, (_, i) =>
+    Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+  );
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      if (a[i-1] === b[j-1]) dp[i][j] = dp[i-1][j-1];
+      else dp[i][j] = 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+    }
+  }
+  return 1 - dp[a.length][b.length] / len;
+}
+
+// ===================== XP & LEVEL =====================
+function gainXP(amount) {
+  xp += amount;
+  const xpForLevel = level * XP_PER_LEVEL;
+  if (xp >= xpForLevel) {
+    xp -= xpForLevel;
+    level++;
+    showModal(`🎊 Level ${level} Unlocked!`,
+      `You reached Level ${level}! You are learning with so much heart. Keep it up, my love! 💖`);
+  }
+  updateXPBar();
+}
+
+function updateXPBar() {
+  const xpForLevel = level * XP_PER_LEVEL;
+  const pct = (xp / xpForLevel) * 100;
+  document.getElementById('xpFill').style.width = pct + '%';
+  document.getElementById('xpLabel').textContent = `${xp}/${xpForLevel}`;
+  document.getElementById('levelNum').textContent = level;
+}
+
+// ===================== STATS =====================
+function updateStats() {
+  document.getElementById('statCorrect').textContent = correct;
+  document.getElementById('statStreak').textContent = streak;
+  document.getElementById('statXP').textContent = xp + (level - 1) * XP_PER_LEVEL;
+
+  const badge = document.getElementById('streakBadge');
+  document.getElementById('streakNum').textContent = streak;
+  if (streak >= 3) badge.classList.add('show');
+  else badge.classList.remove('show');
+}
+
+// ===================== NEXT WORD =====================
+function nextWord() {
+  currentWordIndex++;
+  loadWord();
+}
+
+// ===================== MODE =====================
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('mode-' + m).classList.add('active');
+  loadWord();
+  showToast(m === 'practice' ? '📖 Practice Mode – see the word!' :
+            m === 'quiz' ? '🎯 Quiz Mode – listen & write!' :
+            '🐢 Slow Mode – take your time!');
+}
+
+// ===================== INPUT =====================
+function onInput() {
+  const v = document.getElementById('hindiInput').value;
+  document.getElementById('clearBtn').style.opacity = v ? '1' : '0';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter') checkAnswer();
+}
+
+function clearInput() {
+  document.getElementById('hindiInput').value = '';
+  document.getElementById('clearBtn').style.opacity = '0';
+  document.getElementById('hindiInput').focus();
+  document.getElementById('accuracyWrap').classList.remove('show');
+}
+
+// ===================== KEYBOARD =====================
+function toggleKeyboard() {
+  keyboardOpen = !keyboardOpen;
+  const kb = document.getElementById('hindiKeyboard');
+  kb.classList.toggle('open', keyboardOpen);
+  document.getElementById('kbLabel').textContent = keyboardOpen ? 'close' : 'open';
+}
+
+function typeChar(ch) {
+  const inp = document.getElementById('hindiInput');
+  inp.value += ch;
+  onInput();
+}
+
+function backspaceChar() {
+  const inp = document.getElementById('hindiInput');
+  inp.value = inp.value.slice(0, -1);
+  onInput();
+}
+
+// ===================== CONFETTI =====================
+function launchConfetti() {
+  const wrap = document.getElementById('confettiWrap');
+  wrap.innerHTML = '';
+  const colors = ['#e8547a','#f7c5d0','#e8a87c','#a855b5','#22c55e','#f59e0b'];
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('div');
+    c.className = 'conf';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDelay = Math.random() * 0.5 + 's';
+    c.style.animationDuration = (0.8 + Math.random() * 0.8) + 's';
+    c.style.width = c.style.height = (6 + Math.random() * 8) + 'px';
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    wrap.appendChild(c);
+  }
+  setTimeout(() => wrap.innerHTML = '', 2000);
+}
+
+// ===================== TOAST =====================
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===================== MODAL =====================
+function showModal(title, body) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').textContent = body;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+
+
+let audioCtx = null;
+let masterGain = null;
+let musicPlaying = false;
+let musicNodes = [];
+let musicScheduler = null;
+let currentVolume = 0.25;
+
+// Romantic chord progressions (frequencies in Hz)
+// Using I–VI–IV–V in D major: D, Bm, G, A
+const NOTES = {
+  C4:261.63, D4:293.66, E4:329.63, F4:349.23, G4:392.00,
+  A4:440.00, B4:493.88, C5:523.25, D5:587.33, E5:659.25,
+  Fs4:369.99, Gs4:415.30, Bb4:466.16, Fs5:739.99,
+  D3:146.83, G3:196.00, A3:220.00, B3:246.94, Fs3:184.99
+};
+
+// Melody notes — gentle, dreamy phrase
+const melody = [
+  {n:'D4',d:1.0},{n:'Fs4',d:0.5},{n:'A4',d:0.5},
+  {n:'D5',d:1.5},{n:'C5',d:0.5},
+  {n:'B4',d:1.0},{n:'A4',d:1.0},
+  {n:'G4',d:1.0},{n:'A4',d:0.5},{n:'B4',d:0.5},
+  {n:'A4',d:2.0},
+  {n:'Fs4',d:1.0},{n:'G4',d:0.5},{n:'A4',d:0.5},
+  {n:'B4',d:1.0},{n:'D5',d:1.0},
+  {n:'E5',d:0.75},{n:'D5',d:0.25},{n:'C5',d:0.5},{n:'B4',d:0.5},
+  {n:'A4',d:2.5},
+];
+
+// Bass / chord pad notes
+const chords = [
+  [{n:'D3',d:2},{n:'A3',d:2}],
+  [{n:'B3',d:2},{n:'Fs3',d:2}],
+  [{n:'G3',d:2},{n:'D3',d:2}],
+  [{n:'A3',d:2},{n:'E4',d:2}],  // E4 as chord tone
+];
+
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioCtx.createGain();
+  masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+  masterGain.connect(audioCtx.destination);
+
+  // Soft reverb via convolver simulation using delay nodes
+  const convolver = audioCtx.createConvolver();
+  const rate = audioCtx.sampleRate;
+  const length = rate * 2.5;
+  const impulse = audioCtx.createBuffer(2, length, rate);
+  for (let c = 0; c < 2; c++) {
+    const ch = impulse.getChannelData(c);
+    for (let i = 0; i < length; i++) {
+      ch[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2.5);
+    }
+  }
+  convolver.buffer = impulse;
+
+  const reverbGain = audioCtx.createGain();
+  reverbGain.gain.value = 0.35;
+  convolver.connect(reverbGain);
+  reverbGain.connect(masterGain);
+
+  masterGain._reverbInput = convolver;
+  masterGain._dryGain = audioCtx.createGain();
+  masterGain._dryGain.gain.value = 1;
+  masterGain._dryGain.connect(masterGain);
+}
+
+function playNote(freq, startTime, duration, gainVal, type = 'sine', target = null) {
+  const osc = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, startTime);
+
+  // Gentle vibrato for warmth
+  if (type === 'sine') {
+    const vib = audioCtx.createOscillator();
+    const vibGain = audioCtx.createGain();
+    vib.frequency.value = 5.2;
+    vibGain.gain.value = freq * 0.012;
+    vib.connect(vibGain);
+    vibGain.connect(osc.frequency);
+    vib.start(startTime + 0.15);
+    vib.stop(startTime + duration + 0.05);
+  }
+
+  // Envelope
+  g.gain.setValueAtTime(0, startTime);
+  g.gain.linearRampToValueAtTime(gainVal, startTime + 0.08);
+  g.gain.setValueAtTime(gainVal, startTime + duration - 0.15);
+  g.gain.linearRampToValueAtTime(0, startTime + duration + 0.2);
+
+  osc.connect(g);
+  const dest = target || masterGain;
+  g.connect(dest);
+  // Also send to reverb
+  if (masterGain._reverbInput) g.connect(masterGain._reverbInput);
+
+  osc.start(startTime);
+  osc.stop(startTime + duration + 0.25);
+  musicNodes.push(osc, g);
+}
+
+function scheduleMelody() {
+  if (!musicPlaying) return;
+  const BPM = 62;
+  const BEAT = 60 / BPM;
+  let t = audioCtx.currentTime + 0.05;
+  const totalBeats = melody.reduce((s, n) => s + n.d, 0);
+
+  // Melody (lead)
+  melody.forEach(note => {
+    const freq = NOTES[note.n];
+    if (freq) playNote(freq, t, note.d * BEAT * 0.88, 0.18, 'sine');
+    t += note.d * BEAT;
+  });
+
+  // Chord pad underneath (triangle for softness)
+  let ct = audioCtx.currentTime + 0.05;
+  for (let rep = 0; rep < Math.ceil(totalBeats / 8); rep++) {
+    chords.forEach(chord => {
+      chord.forEach(note => {
+        const freq = NOTES[note.n];
+        if (freq) playNote(freq, ct, note.d * BEAT * 1.9, 0.09, 'triangle');
+        ct += note.d * BEAT;
+      });
+    });
+  }
+
+  // Schedule next loop slightly before this one ends
+  const totalTime = totalBeats * BEAT * 1000;
+  musicScheduler = setTimeout(scheduleMelody, totalTime - 800);
+}
+
+function toggleMusic() {
+  if (!musicPlaying) {
+    startMusic();
+  } else {
+    stopMusic();
+  }
+}
+
+function startMusic() {
+  initAudio();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  musicPlaying = true;
+
+  masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+  masterGain.gain.linearRampToValueAtTime(currentVolume, audioCtx.currentTime + 1.2);
+
+  scheduleMelody();
+
+  document.getElementById('musicBtn').classList.add('playing');
+  document.getElementById('musicLabel').textContent = 'Now Playing ♪';
+  document.getElementById('nowPlaying').innerHTML = '<span>♪ Romantic Hindi Melody — soft & dreamy ♪</span>';
+  document.getElementById('nowPlaying').classList.add('scrolling');
+}
+
+function stopMusic() {
+  musicPlaying = false;
+  clearTimeout(musicScheduler);
+
+  if (masterGain) {
+    masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
+    masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.0);
+  }
+
+  document.getElementById('musicBtn').classList.remove('playing');
+  document.getElementById('musicLabel').textContent = 'Play Music';
+  document.getElementById('nowPlaying').textContent = '♪ Romantic Melody';
+  document.getElementById('nowPlaying').classList.remove('scrolling');
+}
+
+function setVolume(val) {
+  currentVolume = val / 100;
+  if (masterGain && musicPlaying) {
+    masterGain.gain.setTargetAtTime(currentVolume, audioCtx.currentTime, 0.1);
+  }
+}
+
+// ===================== START =====================
+init();
+</script>
+</body>
+</html>
