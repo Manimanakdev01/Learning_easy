@@ -1314,7 +1314,7 @@
     <div class="progress-wrap">
       <div class="progress-bar" id="progressBar"></div>
     </div>
-    <div class="progress-label" id="progressLabel">Word 1 of 20</div>
+    <div class="progress-label" id="progressLabel">Word 1 of 100</div>
   </div>
 
   <!-- Word Card -->
@@ -1402,26 +1402,129 @@
 // ===================== WORD DATA =====================
 // word = Hindi script | romanized = how to type in English | meaning = English meaning
 const wordData = [
-  { word: 'कमल',    romanized: 'kamal',    meaning: 'Lotus flower',      category: 'Nature',  emoji: '🌸' },
-  { word: 'माला',   romanized: 'mala',     meaning: 'Garland / Necklace',category: 'Love',    emoji: '💐' },
-  { word: 'काला',   romanized: 'kala',     meaning: 'Black color',       category: 'Colors',  emoji: '🖤' },
-  { word: 'पानी',   romanized: 'paani',    meaning: 'Water',             category: 'Nature',  emoji: '💧' },
-  { word: 'गाना',   romanized: 'gaana',    meaning: 'Song / To sing',    category: 'Music',   emoji: '🎵' },
-  { word: 'दिल',    romanized: 'dil',      meaning: 'Heart',             category: 'Love',    emoji: '❤️' },
-  { word: 'प्यार',  romanized: 'pyaar',    meaning: 'Love',              category: 'Love',    emoji: '💕' },
-  { word: 'सपना',   romanized: 'sapna',    meaning: 'Dream',             category: 'Emotion', emoji: '✨' },
-  { word: 'तारा',   romanized: 'tara',     meaning: 'Star',              category: 'Sky',     emoji: '⭐' },
-  { word: 'चाँद',   romanized: 'chand',    meaning: 'Moon',              category: 'Sky',     emoji: '🌙' },
-  { word: 'फूल',    romanized: 'phool',    meaning: 'Flower',            category: 'Nature',  emoji: '🌺' },
-  { word: 'आँखें',  romanized: 'aankhen',  meaning: 'Eyes',              category: 'Body',    emoji: '👁️' },
-  { word: 'खुशी',   romanized: 'khushi',   meaning: 'Happiness',         category: 'Emotion', emoji: '😊' },
-  { word: 'सुबह',   romanized: 'subah',    meaning: 'Morning',           category: 'Time',    emoji: '🌅' },
-  { word: 'रात',    romanized: 'raat',     meaning: 'Night',             category: 'Time',    emoji: '🌃' },
-  { word: 'दोस्त',  romanized: 'dost',     meaning: 'Friend',            category: 'People',  emoji: '🤝' },
-  { word: 'माँ',    romanized: 'maa',      meaning: 'Mother',            category: 'Family',  emoji: '🤱' },
-  { word: 'घर',     romanized: 'ghar',     meaning: 'Home',              category: 'Places',  emoji: '🏠' },
-  { word: 'मुस्कान',romanized: 'muskaan',  meaning: 'Smile',             category: 'Emotion', emoji: '😊' },
-  { word: 'बरसात',  romanized: 'barsaat',  meaning: 'Rain',              category: 'Nature',  emoji: '🌧️' },
+  // ── LOVE & ROMANCE ──────────────────────────────────────
+  { word: 'दिल',      romanized: 'dil',       meaning: 'Heart',              category: 'Love',    emoji: '❤️' },
+  { word: 'प्यार',    romanized: 'pyaar',     meaning: 'Love',               category: 'Love',    emoji: '💕' },
+  { word: 'माला',     romanized: 'mala',      meaning: 'Garland / Necklace', category: 'Love',    emoji: '💐' },
+  { word: 'जान',      romanized: 'jaan',      meaning: 'Life / Darling',     category: 'Love',    emoji: '💖' },
+  { word: 'इश्क',     romanized: 'ishq',      meaning: 'Deep Love / Passion',category: 'Love',    emoji: '🔥' },
+  { word: 'आशिक',     romanized: 'aashiq',    meaning: 'Lover',              category: 'Love',    emoji: '💘' },
+  { word: 'यादें',    romanized: 'yaadein',   meaning: 'Memories',           category: 'Love',    emoji: '🌹' },
+  { word: 'वादा',     romanized: 'waada',     meaning: 'Promise',            category: 'Love',    emoji: '🤞' },
+  { word: 'हसरत',     romanized: 'hasrat',    meaning: 'Deep desire / Wish', category: 'Love',    emoji: '🥺' },
+  { word: 'रूह',      romanized: 'rooh',      meaning: 'Soul',               category: 'Love',    emoji: '✨' },
+
+  // ── EMOTIONS & FEELINGS ─────────────────────────────────
+  { word: 'खुशी',     romanized: 'khushi',    meaning: 'Happiness',          category: 'Emotion', emoji: '😊' },
+  { word: 'सपना',     romanized: 'sapna',     meaning: 'Dream',              category: 'Emotion', emoji: '💫' },
+  { word: 'मुस्कान',  romanized: 'muskaan',   meaning: 'Smile',              category: 'Emotion', emoji: '😄' },
+  { word: 'गुस्सा',   romanized: 'gussa',     meaning: 'Anger',              category: 'Emotion', emoji: '😠' },
+  { word: 'दर्द',     romanized: 'dard',      meaning: 'Pain / Hurt',        category: 'Emotion', emoji: '💔' },
+  { word: 'डर',       romanized: 'dar',       meaning: 'Fear',               category: 'Emotion', emoji: '😨' },
+  { word: 'शर्म',     romanized: 'sharm',     meaning: 'Shyness / Shame',    category: 'Emotion', emoji: '🙈' },
+  { word: 'तकलीफ',    romanized: 'takleef',   meaning: 'Trouble / Sorrow',   category: 'Emotion', emoji: '😔' },
+  { word: 'उम्मीद',   romanized: 'ummeed',    meaning: 'Hope',               category: 'Emotion', emoji: '🌤️' },
+  { word: 'जलन',      romanized: 'jalan',     meaning: 'Jealousy / Burning', category: 'Emotion', emoji: '😤' },
+
+  // ── NATURE ──────────────────────────────────────────────
+  { word: 'कमल',      romanized: 'kamal',     meaning: 'Lotus flower',       category: 'Nature',  emoji: '🌸' },
+  { word: 'पानी',     romanized: 'paani',     meaning: 'Water',              category: 'Nature',  emoji: '💧' },
+  { word: 'फूल',      romanized: 'phool',     meaning: 'Flower',             category: 'Nature',  emoji: '🌺' },
+  { word: 'बरसात',    romanized: 'barsaat',   meaning: 'Rain',               category: 'Nature',  emoji: '🌧️' },
+  { word: 'हवा',      romanized: 'hawa',      meaning: 'Wind / Air',         category: 'Nature',  emoji: '🌬️' },
+  { word: 'पेड़',      romanized: 'ped',       meaning: 'Tree',               category: 'Nature',  emoji: '🌳' },
+  { word: 'नदी',      romanized: 'nadi',      meaning: 'River',              category: 'Nature',  emoji: '🏞️' },
+  { word: 'पहाड़',     romanized: 'pahad',     meaning: 'Mountain',           category: 'Nature',  emoji: '⛰️' },
+  { word: 'समुद्र',   romanized: 'samudra',   meaning: 'Ocean / Sea',        category: 'Nature',  emoji: '🌊' },
+  { word: 'मिट्टी',   romanized: 'mitti',     meaning: 'Soil / Earth',       category: 'Nature',  emoji: '🪨' },
+
+  // ── SKY & SPACE ─────────────────────────────────────────
+  { word: 'तारा',     romanized: 'tara',      meaning: 'Star',               category: 'Sky',     emoji: '⭐' },
+  { word: 'चाँद',     romanized: 'chand',     meaning: 'Moon',               category: 'Sky',     emoji: '🌙' },
+  { word: 'सूरज',     romanized: 'suraj',     meaning: 'Sun',                category: 'Sky',     emoji: '☀️' },
+  { word: 'आसमान',    romanized: 'aasmaan',   meaning: 'Sky',                category: 'Sky',     emoji: '🌤️' },
+  { word: 'बादल',     romanized: 'baadal',    meaning: 'Cloud',              category: 'Sky',     emoji: '☁️' },
+  { word: 'इंद्रधनुष',romanized: 'indradhanush', meaning: 'Rainbow',         category: 'Sky',     emoji: '🌈' },
+
+  // ── FAMILY & PEOPLE ─────────────────────────────────────
+  { word: 'माँ',      romanized: 'maa',       meaning: 'Mother',             category: 'Family',  emoji: '🤱' },
+  { word: 'पापा',     romanized: 'papa',      meaning: 'Father / Dad',       category: 'Family',  emoji: '👨' },
+  { word: 'भाई',      romanized: 'bhai',      meaning: 'Brother',            category: 'Family',  emoji: '👦' },
+  { word: 'बहन',      romanized: 'bahan',     meaning: 'Sister',             category: 'Family',  emoji: '👧' },
+  { word: 'दादी',     romanized: 'daadi',     meaning: 'Grandmother (dad)',  category: 'Family',  emoji: '👵' },
+  { word: 'नाना',     romanized: 'naana',     meaning: 'Grandfather (mom)',  category: 'Family',  emoji: '👴' },
+  { word: 'दोस्त',    romanized: 'dost',      meaning: 'Friend',             category: 'People',  emoji: '🤝' },
+  { word: 'यार',      romanized: 'yaar',      meaning: 'Buddy / Mate',       category: 'People',  emoji: '😎' },
+
+  // ── BODY ────────────────────────────────────────────────
+  { word: 'आँखें',    romanized: 'aankhen',   meaning: 'Eyes',               category: 'Body',    emoji: '👁️' },
+  { word: 'होंठ',     romanized: 'honth',     meaning: 'Lips',               category: 'Body',    emoji: '👄' },
+  { word: 'बाल',      romanized: 'baal',      meaning: 'Hair',               category: 'Body',    emoji: '💇' },
+  { word: 'हाथ',      romanized: 'haath',     meaning: 'Hand',               category: 'Body',    emoji: '🤚' },
+  { word: 'पाँव',     romanized: 'paanv',     meaning: 'Feet',               category: 'Body',    emoji: '🦶' },
+  { word: 'चेहरा',    romanized: 'chehra',    meaning: 'Face',               category: 'Body',    emoji: '🙂' },
+
+  // ── FOOD & DRINK ────────────────────────────────────────
+  { word: 'खाना',     romanized: 'khaana',    meaning: 'Food / To eat',      category: 'Food',    emoji: '🍛' },
+  { word: 'चाय',      romanized: 'chai',      meaning: 'Tea',                category: 'Food',    emoji: '🍵' },
+  { word: 'दूध',      romanized: 'doodh',     meaning: 'Milk',               category: 'Food',    emoji: '🥛' },
+  { word: 'रोटी',     romanized: 'roti',      meaning: 'Bread / Flatbread',  category: 'Food',    emoji: '🫓' },
+  { word: 'मिठाई',    romanized: 'mithai',    meaning: 'Sweets / Dessert',   category: 'Food',    emoji: '🍮' },
+  { word: 'आम',       romanized: 'aam',       meaning: 'Mango',              category: 'Food',    emoji: '🥭' },
+  { word: 'चावल',     romanized: 'chaawal',   meaning: 'Rice',               category: 'Food',    emoji: '🍚' },
+  { word: 'दाल',      romanized: 'daal',      meaning: 'Lentil curry',       category: 'Food',    emoji: '🥣' },
+
+  // ── DAILY LIFE & ACTIONS ────────────────────────────────
+  { word: 'गाना',     romanized: 'gaana',     meaning: 'Song / To sing',     category: 'Actions', emoji: '🎵' },
+  { word: 'सोना',     romanized: 'sona',      meaning: 'To sleep / Gold',    category: 'Actions', emoji: '😴' },
+  { word: 'चलना',     romanized: 'chalna',    meaning: 'To walk / To run',   category: 'Actions', emoji: '🚶' },
+  { word: 'खेलना',    romanized: 'khelna',    meaning: 'To play',            category: 'Actions', emoji: '🎮' },
+  { word: 'पढ़ना',    romanized: 'padhna',    meaning: 'To read / study',    category: 'Actions', emoji: '📖' },
+  { word: 'लिखना',    romanized: 'likhna',    meaning: 'To write',           category: 'Actions', emoji: '✍️' },
+  { word: 'देखना',    romanized: 'dekhna',    meaning: 'To see / watch',     category: 'Actions', emoji: '👀' },
+  { word: 'सुनना',    romanized: 'sunna',     meaning: 'To listen / hear',   category: 'Actions', emoji: '👂' },
+  { word: 'बोलना',    romanized: 'bolna',     meaning: 'To speak / say',     category: 'Actions', emoji: '🗣️' },
+  { word: 'हँसना',    romanized: 'hansna',    meaning: 'To laugh',           category: 'Actions', emoji: '😂' },
+  { word: 'रोना',     romanized: 'rona',      meaning: 'To cry',             category: 'Actions', emoji: '😭' },
+  { word: 'नाचना',    romanized: 'naachna',   meaning: 'To dance',           category: 'Actions', emoji: '💃' },
+
+  // ── TIME ────────────────────────────────────────────────
+  { word: 'सुबह',     romanized: 'subah',     meaning: 'Morning',            category: 'Time',    emoji: '🌅' },
+  { word: 'रात',      romanized: 'raat',      meaning: 'Night',              category: 'Time',    emoji: '🌃' },
+  { word: 'शाम',      romanized: 'shaam',     meaning: 'Evening',            category: 'Time',    emoji: '🌆' },
+  { word: 'दोपहर',    romanized: 'dopahar',   meaning: 'Afternoon / Noon',   category: 'Time',    emoji: '☀️' },
+  { word: 'कल',       romanized: 'kal',       meaning: 'Yesterday / Tomorrow',category: 'Time',   emoji: '📅' },
+  { word: 'आज',       romanized: 'aaj',       meaning: 'Today',              category: 'Time',    emoji: '🗓️' },
+  { word: 'हमेशा',    romanized: 'hamesha',   meaning: 'Always / Forever',   category: 'Time',    emoji: '♾️' },
+
+  // ── PLACES ──────────────────────────────────────────────
+  { word: 'घर',       romanized: 'ghar',      meaning: 'Home',               category: 'Places',  emoji: '🏠' },
+  { word: 'गाँव',     romanized: 'gaanv',     meaning: 'Village',            category: 'Places',  emoji: '🏡' },
+  { word: 'शहर',      romanized: 'sheher',    meaning: 'City / Town',        category: 'Places',  emoji: '🏙️' },
+  { word: 'सड़क',     romanized: 'sadak',     meaning: 'Road / Street',      category: 'Places',  emoji: '🛣️' },
+  { word: 'बाजार',    romanized: 'baazaar',   meaning: 'Market',             category: 'Places',  emoji: '🛒' },
+  { word: 'स्कूल',    romanized: 'school',    meaning: 'School',             category: 'Places',  emoji: '🏫' },
+
+  // ── COLORS ──────────────────────────────────────────────
+  { word: 'काला',     romanized: 'kala',      meaning: 'Black',              category: 'Colors',  emoji: '🖤' },
+  { word: 'लाल',      romanized: 'laal',      meaning: 'Red',                category: 'Colors',  emoji: '❤️' },
+  { word: 'हरा',      romanized: 'hara',      meaning: 'Green',              category: 'Colors',  emoji: '💚' },
+  { word: 'नीला',     romanized: 'neela',     meaning: 'Blue',               category: 'Colors',  emoji: '💙' },
+  { word: 'पीला',     romanized: 'peela',     meaning: 'Yellow',             category: 'Colors',  emoji: '💛' },
+  { word: 'गुलाबी',   romanized: 'gulaabi',   meaning: 'Pink',               category: 'Colors',  emoji: '🩷' },
+  { word: 'सफेद',     romanized: 'safed',     meaning: 'White',              category: 'Colors',  emoji: '🤍' },
+
+  // ── HINDI CHAT / HINGLISH ───────────────────────────────
+  { word: 'यार',      romanized: 'yaar',      meaning: 'Dude / Buddy',       category: 'Chat',    emoji: '😎' },
+  { word: 'अच्छा',    romanized: 'achha',     meaning: 'Good / Okay / Really?',category: 'Chat',  emoji: '👍' },
+  { word: 'ठीक है',   romanized: 'theek hai', meaning: 'It\'s okay / Fine',  category: 'Chat',    emoji: '✅' },
+  { word: 'बस',       romanized: 'bas',       meaning: 'Enough / Stop / Just',category: 'Chat',   emoji: '✋' },
+  { word: 'अरे',      romanized: 'are',       meaning: 'Hey! / Oh! (surprise)',category: 'Chat',  emoji: '😲' },
+  { word: 'हाँ',      romanized: 'haan',      meaning: 'Yes',                category: 'Chat',    emoji: '✔️' },
+  { word: 'नहीं',     romanized: 'nahin',     meaning: 'No',                 category: 'Chat',    emoji: '❌' },
+  { word: 'शायद',     romanized: 'shayad',    meaning: 'Maybe / Perhaps',    category: 'Chat',    emoji: '🤔' },
+  { word: 'बिल्कुल',  romanized: 'bilkul',    meaning: 'Absolutely / Exactly',category: 'Chat',  emoji: '💯' },
+  { word: 'मतलब',     romanized: 'matlab',    meaning: 'Meaning / I mean',   category: 'Chat',    emoji: '💬' },
 ];
 
 // ===================== STATE =====================
@@ -1474,8 +1577,8 @@ function loadWord() {
   if (currentWordIndex >= shuffledWords.length) {
     currentWordIndex = 0;
     shuffledWords = shuffle([...wordData]);
-    showModal('🎉 You completed a full round!',
-      'You went through all 20 words. You are growing every day, step by step, with so much love. Let\'s go again! 💪❤️');
+    showModal('🎉 You completed all 100 words!',
+      'Waah! You practised every single word — all 100 of them! You are not just learning Hindi, you are falling in love with it. Let\'s go again! 💪❤️');
   }
 
   const data = shuffledWords[currentWordIndex];
